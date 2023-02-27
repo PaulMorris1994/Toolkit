@@ -1,0 +1,1 @@
+search-mailbox -identity "name" -searchquery {(Kind:Email Received:>01/01/2016 and Received:<01/05/2021 and sent:>01/01/2016 and sent:<01/05/2021)} -deletecontent -force
