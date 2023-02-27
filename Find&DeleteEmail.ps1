@@ -1,0 +1,1 @@
+﻿Get-Mailbox -ResultSize unlimited | Search-Mailbox -SearchQuery 'Subject:"HMRC ltr 21.2.22 re enforcement"' –DeleteContent -force
