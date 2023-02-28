@@ -36,5 +36,4 @@ Else {
              }
      }
 
-
 Disconnect-ExchangeOnline -Confirm:$False
