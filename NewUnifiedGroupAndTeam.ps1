@@ -1,11 +1,11 @@
-$Office = Get-AzureADUser -All $True | where { $_.PhysicalDeliveryOfficeName -like "Worcester" } | select Displayname, @{N='Office';E={$_.PhysicalDeliveryOfficeName}}, ObjectID
+$Office = Get-AzADUser | where { $_.OfficeLocation -like "blackburn" } | select Displayname, @{N='Office';E={$_.OfficeLocation}}, ID
 
-New-AzADGroup -DisplayName "Worcester Office" -GroupType "Unified" -MailEnabled -MailNickname "WorcesterOffice" -Visibility Private
+New-AzADGroup -DisplayName "Blackburn Office" -GroupType "Unified" -MailEnabled -MailNickname "BlackburnOffice" -Visibility Private -Verbose
 
 ForEach ($O in $Office) {
-    Add-AzADGroupMember -TargetGroupDisplayName "Worcester Office" -MemberObjectId $O.ObjectID
+    Add-AzADGroupMember -TargetGroupDisplayName "Blackburn Office" -MemberObjectId $O.ID
 }
 
-$ID = (Get-azadgroup -DisplayName "Worcester Office").Id
+$ID = (Get-azadgroup -DisplayName "Blackburn Office").Id
 
 New-Team -GroupId $ID
