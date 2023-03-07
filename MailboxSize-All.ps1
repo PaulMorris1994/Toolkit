@@ -1,14 +1,15 @@
-﻿Connect-ExchangeOnline
-$Mailbox = Get-EXOMailbox | select Name
+Connect-ExchangeOnline -ShowBanner:$False
+
+$Mailbox = Get-EXOMailbox | select DisplayName, Identity
 
 ForEach($M in $Mailbox) {
-    $Mailbox = (Get-EXOMailboxFolderStatistics -Identity $m.Name | ? { $_.Name -like "*Top of Information Store*" }).FolderAndSubfolderSize
+    $Mailbox = (Get-EXOMailboxFolderStatistics -Identity $m.DisplayName | ? { $_.Name -like "*Top of Information Store*" }).FolderAndSubfolderSize
     $Export = [Ordered] @{
-    "Name"           = $m.Name
+    "Name"           = $m.DisplayName
     "Mailbox Size"   = $Mailbox
     }
 
     $Export
 }
 
-Disconnect-ExchangeOnline
+Disconnect-ExchangeOnline -Confirm:$False
