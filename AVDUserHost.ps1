@@ -5,4 +5,4 @@ $User = Read-Host "Type username"
 
 Get-AzWvdUserSession -ResourceGroupName $RG -HostPoolName $HP | Where { $_.ActiveDirectoryUserName -like "*$User*" } | select @{N="Username";E={$_.ActiveDirectoryUserName}}, Name, SessionState
 
-
+Disconnect-AzAccount
